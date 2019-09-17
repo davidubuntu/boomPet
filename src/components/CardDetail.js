@@ -10,8 +10,8 @@ import {
   TouchableOpacity
 } from "react-native"
 
+import FadeInImage from '../components/FadeInImage'
 import { createStackNavigator, createAppContainer } from "react-navigation"
-
 const CardDetail = props => {
   const {
     _key,
@@ -57,7 +57,8 @@ const CardDetail = props => {
     <>
       <View style={styles.card_container}>
         <View style={styles.image_container}>
-          <Image
+          <FadeInImage
+            duration={1000}
             style={styles.image}
             source={{
               uri: imageSrc

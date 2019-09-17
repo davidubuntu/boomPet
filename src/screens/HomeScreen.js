@@ -3,6 +3,7 @@ import { StyleSheet, Button, View, Text, FlatList } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import Header from "../components/Header"
 import Card from "../components/Card"
+import FadeInView from '../components/FadeInView'
 import { db } from "../services/FirebaseService"
 const HomeScreen = props => {
   const { navigation } = props
@@ -29,7 +30,6 @@ const HomeScreen = props => {
     })
   }
  
-
   useEffect(() => {
     userIsLogged()
     getPetsData()
@@ -54,7 +54,7 @@ const HomeScreen = props => {
     )
   }
   return (
-    <View style={styles.home_container}>
+    <FadeInView duration={1500} style={styles.home_container}>
       <View style={styles.line} />
       <FlatList
         style={styles.list}
@@ -62,7 +62,7 @@ const HomeScreen = props => {
         renderItem={renderPets}
         keyExtractor={item => item.key}
       />
-    </View>
+    </FadeInView>
   )
 }
 HomeScreen.navigationOptions = ({ navigation }) => ({

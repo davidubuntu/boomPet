@@ -9,7 +9,6 @@ import {
   Image,
   TouchableOpacity
 } from "react-native"
-
 import { createStackNavigator, createAppContainer } from "react-navigation"
 export default class Card extends React.Component {
   constructor(props) {
