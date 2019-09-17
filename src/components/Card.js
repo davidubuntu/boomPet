@@ -14,14 +14,30 @@ import { createStackNavigator, createAppContainer } from "react-navigation"
 export default class Card extends React.Component {
   constructor(props) {
     super(props)
+    this.state = { starLikeFilled: false }
+  }
+
+  checkUserLikePet(){
+    const likes = this.props.likes
+    const userLogged = this.props.userLogged
+    if(Object.keys(likes).includes(userLogged)){
+    this.setState({starLikeFilled:true})
+   }else{
+    this.setState({starLikeFilled:false})
+    }
+  }
+
+  componentDidMount(){
+      this.checkUserLikePet()
   }
 
   addLike(petId) {
-    const userId = "userPep"
+    const userId = this.props.userLogged
     console.log(userId, petId)
     db.ref(`pets/${petId}/likes/${userId}`)
       .set(true)
       .then(data => {
+        this.checkUserLikePet()
         //success callback
         console.log("data ", data)
       })
@@ -29,6 +45,27 @@ export default class Card extends React.Component {
         //error callback
         console.log("error ", error)
       })
+  }
+  removeLike(petId) {
+    const userId = this.props.userLogged
+    db.ref(`pets/${petId}/likes/${userId}`)
+    .set(null)
+    .then(data => {
+    this.checkUserLikePet()
+    //success callback
+    console.log("data ", data)
+    })
+    .catch(error => {
+    //error callback
+    console.log("error ", error)
+    })
+  }
+  pressStar(petId){
+      if (this.state.starLikeFilled){
+        this.removeLike(petId)
+    }else{
+        this.addLike(petId)
+      }
   }
   render() {
     return (
@@ -55,9 +92,9 @@ export default class Card extends React.Component {
               </Text>
               <TouchableOpacity
                 style={styles.icons}
-                onPress={() => this.addLike(this.props._key)}
+                onPress={() => this.pressStar(this.props._key)}
               >
-                {this.props.likesCount > 0 ? (
+                {this.state.starLikeFilled  ? (
                   <Icon name="star" color="#00CADD" size={20} />
                 ) : (
                   <Icon name="star-border" color="#00CADD" size={20} />

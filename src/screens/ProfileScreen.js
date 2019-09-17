@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Text
+  Text,
+  TextInput
 } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import Header from "../components/Header"
@@ -14,7 +15,7 @@ import * as Font from "expo-font"
 export default class ProfileScreen extends React.Component {
   constructor() {
     super()
-    this.state = { fontloaded: false }
+    this.state = { fontloaded: false,user:'' }
   }
   async componentDidMount() {
     await Font.loadAsync({
@@ -30,6 +31,10 @@ export default class ProfileScreen extends React.Component {
     // headerTitle instead of title
     header: null
   }
+  handleUser=(userName)=>{ 
+      console.log(userName)
+    this.setState({ user: userName })
+  }
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -43,9 +48,24 @@ export default class ProfileScreen extends React.Component {
         ) : (
           <Text>BoomPet si estilo</Text>
         )}
+        <TextInput style = {styles.user_input}
+        underlineColorAndroid = "transparent"
+        placeholder = "User"
+        placeholderTextColor = "black"
+        autoCapitalize = "none"
+        onChangeText = {this.handleUser}
+        autoCompleteType='username'
+        />
+        <TextInput style = {styles.password_innput}
+            underlineColorAndroid = "transparent"
+            placeholder = "Password"
+            placeholderTextColor = "black"
+            autoCapitalize = "none"
+            autoCompleteType='password'
+        />
         <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.props.navigation.navigate("Home")}
+          style={styles.button_login}
+          onPress={() => this.state.user!=''? this.props.navigation.navigate("Home",{user:this.state.user}):''}
         >
           <Text style={styles.text_button}>Login</Text>
         </TouchableOpacity>
@@ -54,7 +74,7 @@ export default class ProfileScreen extends React.Component {
   }
 }
 const styles = StyleSheet.create({
-  button: {
+   button_login: {
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FF806C",
@@ -82,5 +102,29 @@ const styles = StyleSheet.create({
   text_button: {
     color: "white",
     fontSize: 20
+  },
+  user_input:{
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FFFFFF",
+    padding: 10,
+    height: 50,
+    width: "90%",
+    marginTop: 10,
+    borderRadius: 16,
+    borderWidth:1,
+    borderColor:'gray'
+},
+  password_innput:{
+   alignItems: "center",
+   justifyContent: "center",
+   backgroundColor: "#FFFFFF",
+   padding: 10,
+   height: 50,
+   width: "90%",
+   marginTop: 10,
+   borderRadius: 16,
+   borderWidth:1,
+   borderColor:'gray'
   }
 })

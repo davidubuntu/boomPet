@@ -6,9 +6,17 @@ import Card from "../components/Card"
 import { db } from "../services/FirebaseService"
 
 const HomeScreen = props => {
+  const { navigation } = props
   const [pets, setPets] = useState([])
-
+  const [loggedUser,setLoggedUser]= useState('')
+  
   let petsDBRef = db.ref("pets/")
+
+  const userIsLogged=()=>{
+      const user= navigation.state.params.user
+      console.log(user)
+      setLoggedUser(user)
+  }
 
   const getPetsData = () => {
     petsDBRef.on("value", snapshot => {
@@ -21,11 +29,14 @@ const HomeScreen = props => {
       setPets(petsArray)
     })
   }
+ 
 
   useEffect(() => {
+    userIsLogged()
     getPetsData()
+
   }, [])
-  console.log(Date.now(), pets)
+//   console.log(Date.now(), pets)
   const renderPets = ({ item }) => {
     return (
       <Card
@@ -34,10 +45,12 @@ const HomeScreen = props => {
         description={item.description}
         imageSrc={item.photo}
         likesCount={item.likes_count}
+        likes={item.likes}
         sex={item.sex}
         navigate={props.navigation.navigate}
         destination={"Details"}
         cardSelected={item}
+        userLogged={loggedUser}
       />
     )
   }

@@ -66,13 +66,19 @@ const CardDetail = props => {
         <View style={styles.details_container}>
           <View style={styles.details_title_container}>
             <Text style={styles.name}>{name}</Text>
-            <TouchableOpacity
+          {/*   <TouchableOpacity
               style={styles.icons}
               onPress={() => addLike(_key)}
             >
               {likesIcon}
               {LikesText}
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            <View
+              style={styles.icons}
+            >
+              {likesIcon}
+              {LikesText}
+            </View>
             <TouchableOpacity style={styles.button}>
               <Text style={styles.text_button}>{sex}</Text>
             </TouchableOpacity>
