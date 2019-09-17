@@ -48,9 +48,9 @@ const CardDetail = props => {
     )
   const LikesText =
     likesCount > 0 ? (
-      <Text style={styles.likes_count}>{likesCount} Likes</Text>
+      <Text style={styles.likes_count}>{likesCount} likes</Text>
     ) : (
-      <Text style={styles.likes_count}>0 Likes</Text>
+      <Text style={styles.likes_count}>0 likes</Text>
     )
 
   return (

@@ -3,12 +3,14 @@ import { StyleSheet, Button, View, Text, FlatList } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import Header from "../components/Header"
 import CardDetail from "../components/CardDetail"
-let selectedCardName
+let selectedCardName,userToHeader
 const DetailsScreen = props => {
   const { navigation } = props
   const selectedCard = navigation.state.params.selected
   const starFilled = navigation.state.params.starFilled
-  selectedCardName = navigation.state.params.name
+  const userLogged = navigation.state.params.user
+  userToHeader = userLogged
+  selectedCardName = selectedCard.name
   return (
     <>
       <View style={styles.line} />
@@ -29,7 +31,7 @@ const DetailsScreen = props => {
   )
 }
 DetailsScreen.navigationOptions = ({ navigation }) => ({
-  header: <Header title={selectedCardName} subtitle="Pet Details" />
+  header: <Header title={selectedCardName} subtitle="Pet Details" user={userToHeader} />
 })
 
 export default DetailsScreen

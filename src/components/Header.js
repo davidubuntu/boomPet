@@ -15,6 +15,7 @@ export default class Header extends React.Component {
               style={styles.image}
               source={require("../assets/pet-icon.png")}
             />
+             <Text style={styles.user}>{this.props.user}</Text>
           </View>
         </View>
       </>
@@ -45,9 +46,15 @@ const styles = StyleSheet.create({
     height: 50
   },
   text_container: {
-    left: 5
+
   },
   image_container: {
-    right: 5
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  user:{
+    fontWeight: "100",
+    fontSize: 12,
+    marginRight : 10
   }
 })

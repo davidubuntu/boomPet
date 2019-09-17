@@ -75,7 +75,7 @@ export default class Card extends React.Component {
         <TouchableOpacity
           style={styles.card_container}
           onPress={() =>
-            this.props.navigate(this.props.destination, {selected:this.props.cardSelected,starFilled:this.state.starLikeFilled})
+            this.props.navigate(this.props.destination, {selected:this.props.cardSelected,starFilled:this.state.starLikeFilled,user:this.props.userLogged})
           }
         >
           <View style={styles.image_container}>

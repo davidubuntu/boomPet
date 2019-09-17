@@ -62,6 +62,7 @@ export default class ProfileScreen extends React.Component {
             placeholderTextColor = "black"
             autoCapitalize = "none"
             autoCompleteType='password'
+            secureTextEntry={true}
         />
         <TouchableOpacity
           style={styles.button_login}
