@@ -4,7 +4,6 @@ import { createStackNavigator, createAppContainer } from "react-navigation"
 import Header from "../components/Header"
 import Card from "../components/Card"
 import { db } from "../services/FirebaseService"
-let userToHeader=''
 const HomeScreen = props => {
   const { navigation } = props
   const [pets, setPets] = useState([])
@@ -15,7 +14,6 @@ const HomeScreen = props => {
   const userIsLogged=()=>{
       const user= navigation.state.params.user
       console.log(user)
-      userToHeader=user
       setLoggedUser(user)
   }
 
@@ -69,7 +67,7 @@ const HomeScreen = props => {
 }
 HomeScreen.navigationOptions = ({ navigation }) => ({
   header:
-   <Header title="Choose your pet" subtitle="Dogs" user={userToHeader} />
+   <Header title="Choose your pet" subtitle="Dogs" user={navigation.state.params.user} />
 })
 
 export default HomeScreen
