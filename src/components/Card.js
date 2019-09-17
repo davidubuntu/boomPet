@@ -21,8 +21,10 @@ export default class Card extends React.Component {
     const likes = this.props.likes
     const userLogged = this.props.userLogged
     if(Object.keys(likes).includes(userLogged)){
+        console.log(userLogged,'le gusta la mascota')
     this.setState({starLikeFilled:true})
    }else{
+    console.log(userLogged,'no le gusta la mascota')
     this.setState({starLikeFilled:false})
     }
   }
@@ -73,7 +75,7 @@ export default class Card extends React.Component {
         <TouchableOpacity
           style={styles.card_container}
           onPress={() =>
-            this.props.navigate(this.props.destination, this.props.cardSelected)
+            this.props.navigate(this.props.destination, {selected:this.props.cardSelected,starFilled:this.state.starLikeFilled})
           }
         >
           <View style={styles.image_container}>

@@ -22,7 +22,8 @@ const CardDetail = props => {
     description,
     petId,
     navigate,
-    destination
+    destination,
+    starFilled
   } = props
 
   const addLike = petId => {
@@ -40,7 +41,7 @@ const CardDetail = props => {
   }
 
   const likesIcon =
-    likesCount > 0 ? (
+    starFilled ? (
       <Icon name="star" color="#00CADD" size={25} />
     ) : (
       <Icon name="star-border" color="#00CADD" size={25} />

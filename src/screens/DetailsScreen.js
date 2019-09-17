@@ -6,7 +6,8 @@ import CardDetail from "../components/CardDetail"
 let selectedCardName
 const DetailsScreen = props => {
   const { navigation } = props
-  const selectedCard = navigation.state.params
+  const selectedCard = navigation.state.params.selected
+  const starFilled = navigation.state.params.starFilled
   selectedCardName = navigation.state.params.name
   return (
     <>
@@ -20,6 +21,7 @@ const DetailsScreen = props => {
           likesCount={selectedCard.likes_count}
           sex={selectedCard.sex}
           navigate={props.navigation.navigate}
+          starFilled={starFilled}
           destination={"Home"}
         />
       </View>
