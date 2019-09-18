@@ -17,13 +17,11 @@ export default class Card extends React.Component {
   }
 
   checkUserLikePet(){
-    const likes = this.props.likes
+    console.log(this.props.likes)
     const userLogged = this.props.userLogged
-    if(Object.keys(likes).includes(userLogged)){
-        console.log(userLogged,'le gusta la mascota')
+    if(this.props.likes && Object.keys(this.props.likes).includes(userLogged)){
     this.setState({starLikeFilled:true})
    }else{
-    console.log(userLogged,'no le gusta la mascota')
     this.setState({starLikeFilled:false})
     }
   }
