@@ -16,17 +16,20 @@ export default class Card extends React.Component {
     this.state = { starLikeFilled: false }
   }
 
-  checkUserLikePet(){
+  checkUserLikePet() {
     const userLogged = this.props.userLogged
-    if(this.props.likes && Object.keys(this.props.likes).includes(userLogged)){
-    this.setState({starLikeFilled:true})
-   }else{
-    this.setState({starLikeFilled:false})
+    if (
+      this.props.likes &&
+      Object.keys(this.props.likes).includes(userLogged)
+    ) {
+      this.setState({ starLikeFilled: true })
+    } else {
+      this.setState({ starLikeFilled: false })
     }
   }
 
-  componentDidMount(){
-      this.checkUserLikePet()
+  componentDidMount() {
+    this.checkUserLikePet()
   }
 
   addLike(petId) {
@@ -46,32 +49,36 @@ export default class Card extends React.Component {
   removeLike(petId) {
     const userId = this.props.userLogged
     db.ref(`pets/${petId}/likes/${userId}`)
-    .set(null)
-    .then(data => {
-    this.checkUserLikePet()
-    //success callback
-    console.log("data ", data)
-    })
-    .catch(error => {
-    //error callback
-    console.log("error ", error)
-    })
+      .set(null)
+      .then(data => {
+        this.checkUserLikePet()
+        //success callback
+        console.log("data ", data)
+      })
+      .catch(error => {
+        //error callback
+        console.log("error ", error)
+      })
   }
-  pressStar(petId){
-      if (this.state.starLikeFilled){
-        this.removeLike(petId)
-    }else{
-        this.addLike(petId)
-      }
+  pressStar(petId) {
+    if (this.state.starLikeFilled) {
+      this.removeLike(petId)
+    } else {
+      this.addLike(petId)
+    }
   }
   render() {
     return (
       <>
         <TouchableOpacity
-          activeOpacity = {0.8}
+          activeOpacity={0.8}
           style={styles.card_container}
           onPress={() =>
-            this.props.navigate(this.props.destination, {selected:this.props.cardSelected,starFilled:this.state.starLikeFilled,user:this.props.userLogged})
+            this.props.navigate(this.props.destination, {
+              selected: this.props.cardSelected,
+              starFilled: this.state.starLikeFilled,
+              user: this.props.userLogged
+            })
           }
         >
           <View style={styles.image_container}>
@@ -92,7 +99,7 @@ export default class Card extends React.Component {
                 style={styles.icons}
                 onPress={() => this.pressStar(this.props._key)}
               >
-                {this.state.starLikeFilled  ? (
+                {this.state.starLikeFilled ? (
                   <Icon name="star" color="#00CADD" size={20} />
                 ) : (
                   <Icon name="star-border" color="#00CADD" size={20} />

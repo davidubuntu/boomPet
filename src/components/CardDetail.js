@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 25
+    paddingTop: 10
   },
   description: {
     fontWeight: "100",
@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
   scroll_view_description: {
    marginHorizontal: 5,
    maxHeight:280,
-   marginTop: 10
+   marginTop: 10,
+   marginBottom:25
   }
 })
