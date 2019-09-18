@@ -28,9 +28,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "#E5E5E5",
-    paddingTop: 50,
+    paddingTop: 40,
     paddingLeft: 16,
-    paddingBottom: 30
+    paddingBottom: 10
   },
   header_subtitle: {
     fontWeight: "600",
@@ -41,20 +41,20 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginBottom: 5
   },
-  image: {
-    width: 50,
-    height: 50
-  },
   text_container: {
 
   },
   image_container: {
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "flex-end"
+  },
+  image: {
+    width: 50,
+    height: 50
   },
   user:{
     fontWeight: "100",
     fontSize: 12,
-    marginRight : 10
+    marginRight : 20
   }
 })

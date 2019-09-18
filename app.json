@@ -4,6 +4,7 @@
   "expo": {
     "name": "BoomPet",
     "slug": "boom-pet",
+    "icon": "./src/assets/pet-icon.png",
     "privacy": "unlisted",
     "sdkVersion": "34.0.0",
     "version": "1.0.0",

@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
   Text,
-  TextInput
+  TextInput,
+  KeyboardAvoidingView
 } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import Header from "../components/Header"
@@ -32,11 +33,12 @@ export default class ProfileScreen extends React.Component {
     header: null
   }
   handleUser=(userName)=>{ 
+
     this.setState({ user: userName })
   }
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <KeyboardAvoidingView  behavior="padding" style={styles.profile_container}>
         <Image
           style={styles.image}
           source={require("../assets/pet-icon.png")}
@@ -69,11 +71,15 @@ export default class ProfileScreen extends React.Component {
         >
           <Text style={styles.text_button}>Login</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
 const styles = StyleSheet.create({
+    profile_container:{ 
+    flex: 1, alignItems: "center", 
+    justifyContent: "center"
+ },
    button_login: {
     alignItems: "center",
     justifyContent: "center",

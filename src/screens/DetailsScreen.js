@@ -3,6 +3,7 @@ import { StyleSheet, Button, View, Text, FlatList } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import Header from "../components/Header"
 import CardDetail from "../components/CardDetail"
+import FadeInView from '../components/FadeInView'
 const DetailsScreen = props => {
   const { navigation } = props
   const selectedCard = navigation.state.params.selected
@@ -10,8 +11,8 @@ const DetailsScreen = props => {
   const userLogged = navigation.state.params.user
   return (
     <>
-      <View style={styles.line} />
-      <View style={styles.details_container}>
+      <View style = {styles.line} />
+      <FadeInView duration={1000} style={styles.details_container}>
         <CardDetail
           _key={selectedCard.key}
           name={selectedCard.name}
@@ -23,7 +24,7 @@ const DetailsScreen = props => {
           starFilled={starFilled}
           destination={"Home"}
         />
-      </View>
+      </FadeInView>
     </>
   )
 }

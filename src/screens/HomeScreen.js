@@ -14,7 +14,6 @@ const HomeScreen = props => {
 
   const userIsLogged=()=>{
       const user= navigation.state.params.user
-      console.log(user)
       setLoggedUser(user)
   }
 
@@ -54,7 +53,7 @@ const HomeScreen = props => {
     )
   }
   return (
-    <FadeInView duration={1500} style={styles.home_container}>
+    <FadeInView duration={1000} style={styles.home_container}>
       <View style={styles.line} />
       <FlatList
         style={styles.list}
