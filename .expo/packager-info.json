@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 13627,
-  "expoServerNgrokUrl": "https://qx-wbh.ddiezr.frontreactnativepets.exp.direct",
-  "packagerNgrokUrl": "https://packager.qx-wbh.ddiezr.frontreactnativepets.exp.direct",
-  "ngrokPid": 13635
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }

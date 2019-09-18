@@ -1,9 +1,9 @@
 {
-  "name": "frontReactNativePets",
+  "name": "BoomPet",
   "displayName": "Boomva Pets David Diez",
   "expo": {
-    "name": "frontReactNativePets",
-    "slug": "expo-template-bare",
+    "name": "BoomPet",
+    "slug": "boom-pet",
     "privacy": "unlisted",
     "sdkVersion": "34.0.0",
     "version": "1.0.0",
@@ -12,6 +12,8 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "description": "Imagine you would like to find your perfect pet (dogs preferably), but you do not know where to begin with. Let’s try to solve it with a very simple app for your phone.",
+    "githubUrl": "https://github.com/davidubuntu/boomPet"
   }
 }
