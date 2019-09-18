@@ -17,7 +17,6 @@ export default class Card extends React.Component {
   }
 
   checkUserLikePet(){
-    console.log(this.props.likes)
     const userLogged = this.props.userLogged
     if(this.props.likes && Object.keys(this.props.likes).includes(userLogged)){
     this.setState({starLikeFilled:true})
@@ -32,7 +31,6 @@ export default class Card extends React.Component {
 
   addLike(petId) {
     const userId = this.props.userLogged
-    console.log(userId, petId)
     db.ref(`pets/${petId}/likes/${userId}`)
       .set(true)
       .then(data => {

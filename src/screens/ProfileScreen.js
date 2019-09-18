@@ -32,7 +32,6 @@ export default class ProfileScreen extends React.Component {
     header: null
   }
   handleUser=(userName)=>{ 
-      console.log(userName)
     this.setState({ user: userName })
   }
   render() {
