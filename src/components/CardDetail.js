@@ -7,10 +7,11 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView
 } from "react-native"
 
-// import FadeInImage from '../components/FadeInImage'
 import { createStackNavigator, createAppContainer } from "react-navigation"
 const CardDetail = props => {
   const {
@@ -21,31 +22,14 @@ const CardDetail = props => {
     sex,
     description,
     petId,
-    navigate,
-    destination,
     starFilled
   } = props
 
-  const addLike = petId => {
-    const userId = "userPepe"
-    db.ref(`pets/${petId}/likes/${userId}`)
-      .set(true)
-      .then(data => {
-        //success callback
-        console.log("data ", data)
-      })
-      .catch(error => {
-        //error callback
-        console.log("error ", error)
-      })
-  }
-
-  const likesIcon =
-    starFilled ? (
-      <Icon name="star" color="#00CADD" size={25} />
-    ) : (
-      <Icon name="star-border" color="#00CADD" size={25} />
-    )
+  const likesIcon = starFilled ? (
+    <Icon name="star" color="#00CADD" size={25} />
+  ) : (
+    <Icon name="star-border" color="#00CADD" size={25} />
+  )
   const LikesText =
     likesCount > 0 ? (
       <Text style={styles.likes_count}>{likesCount} likes</Text>
@@ -67,16 +51,7 @@ const CardDetail = props => {
         <View style={styles.details_container}>
           <View style={styles.details_title_container}>
             <Text style={styles.name}>{name}</Text>
-          {/*   <TouchableOpacity
-              style={styles.icons}
-              onPress={() => addLike(_key)}
-            >
-              {likesIcon}
-              {LikesText}
-            </TouchableOpacity> */}
-            <View
-              style={styles.icons}
-            >
+            <View style={styles.icons}>
               {likesIcon}
               {LikesText}
             </View>
@@ -84,13 +59,11 @@ const CardDetail = props => {
               <Text style={styles.text_button}>{sex}</Text>
             </TouchableOpacity>
           </View>
-          <Text style={styles.description}>{description}</Text>
-          <TouchableOpacity
-            style={styles.icon_back_container}
-            onPress={() => navigate(destination)}
-          >
-            <Icon name="chevron-left" color="#ccc" size={50} />
-          </TouchableOpacity>
+          <SafeAreaView style={styles.safe_area}>
+            <ScrollView style={styles.scroll_view_description}>
+              <Text style={styles.description}>{description}</Text>
+            </ScrollView>
+          </SafeAreaView>
         </View>
         {/* acaba details container */}
       </View>
@@ -185,5 +158,9 @@ const styles = StyleSheet.create({
   icon_back_container: {
     flexDirection: "row",
     justifyContent: "flex-end"
+  },
+  scroll_view_description: {},
+  safe_area: {
+    flex: 1
   }
 })

@@ -3,18 +3,18 @@ import { StyleSheet, Button, View, Text, FlatList } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import Header from "../components/Header"
 import Card from "../components/Card"
-import FadeInView from '../components/FadeInView'
+import FadeInView from "../components/FadeInView"
 import { db } from "../services/FirebaseService"
 const HomeScreen = props => {
   const { navigation } = props
   const [pets, setPets] = useState([])
-  const [loggedUser,setLoggedUser]= useState('')
-  
+  const [loggedUser, setLoggedUser] = useState("")
+
   let petsDBRef = db.ref("pets/")
 
-  const userIsLogged=()=>{
-      const user= navigation.state.params.user
-      setLoggedUser(user)
+  const userIsLogged = () => {
+    const user = navigation.state.params.user
+    setLoggedUser(user)
   }
 
   const getPetsData = () => {
@@ -28,13 +28,12 @@ const HomeScreen = props => {
       setPets(petsArray)
     })
   }
- 
+
   useEffect(() => {
     userIsLogged()
     getPetsData()
-
   }, [])
-//   console.log(Date.now(), pets)
+  //   console.log(Date.now(), pets)
   const renderPets = ({ item }) => {
     return (
       <Card
@@ -65,8 +64,13 @@ const HomeScreen = props => {
   )
 }
 HomeScreen.navigationOptions = ({ navigation }) => ({
-  header:
-   <Header title="Choose your pet" subtitle="Dogs" user={navigation.state.params.user} />
+  header: (
+    <Header
+      title="Choose your pet"
+      subtitle="Dogs"
+      user={navigation.state.params.user}
+    />
+  )
 })
 
 export default HomeScreen

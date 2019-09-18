@@ -3,7 +3,7 @@ import { StyleSheet, Button, View, Text, FlatList } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import Header from "../components/Header"
 import CardDetail from "../components/CardDetail"
-import FadeInView from '../components/FadeInView'
+import FadeInView from "../components/FadeInView"
 const DetailsScreen = props => {
   const { navigation } = props
   const selectedCard = navigation.state.params.selected
@@ -11,7 +11,7 @@ const DetailsScreen = props => {
   const userLogged = navigation.state.params.user
   return (
     <>
-      <View style = {styles.line} />
+      <View style={styles.line} />
       <FadeInView duration={1000} style={styles.details_container}>
         <CardDetail
           _key={selectedCard.key}
@@ -20,7 +20,6 @@ const DetailsScreen = props => {
           imageSrc={selectedCard.photo}
           likesCount={selectedCard.likes_count}
           sex={selectedCard.sex}
-          navigate={props.navigation.navigate}
           starFilled={starFilled}
           destination={"Home"}
         />
@@ -29,7 +28,15 @@ const DetailsScreen = props => {
   )
 }
 DetailsScreen.navigationOptions = ({ navigation }) => ({
-  header: <Header title={navigation.state.params.selected.name} subtitle="Pet Details" user={navigation.state.params.user} />
+  header: (
+    <Header
+      title={navigation.state.params.selected.name}
+      subtitle="Pet Details"
+      user={navigation.state.params.user}
+      navigate={navigation.navigate}
+      destination={"Home"}
+    />
+  )
 })
 
 export default DetailsScreen
