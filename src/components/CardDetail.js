@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
   },
   icons: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    justifyContent:"center"
   },
   icon_back_container: {
     flexDirection: "row",
