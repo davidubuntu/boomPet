@@ -42,30 +42,35 @@ export default class ProfileScreen extends React.Component {
           style={styles.image}
           source={require("../assets/pet-icon.png")}
         />
-        <Text style={styles.title}>BoomPet</Text>
+        {this.state.fontLoaded ? (
+          <Text style={styles.title}>BoomPet</Text>
+        ) : null}
         {this.state.fontLoaded ? (
           <Text style={styles.subtitle}>Find your best animal friend</Text>
-        ) : (
-          <Text>BoomPet si estilo</Text>
-        )}
-        <TextInput
-          style={styles.user_input}
-          underlineColorAndroid="transparent"
-          placeholder="User"
-          placeholderTextColor="black"
-          autoCapitalize="none"
-          onChangeText={this.handleUser}
-          autoCompleteType="username"
-        />
-        <TextInput
-          style={styles.password_innput}
-          underlineColorAndroid="transparent"
-          placeholder="Password"
-          placeholderTextColor="black"
-          autoCapitalize="none"
-          autoCompleteType="password"
-          secureTextEntry={true}
-        />
+        ) : null}
+        {this.state.fontLoaded ? (
+          <TextInput
+            style={styles.user_input}
+            underlineColorAndroid="transparent"
+            placeholder="User"
+            placeholderTextColor="black"
+            autoCapitalize="none"
+            onChangeText={this.handleUser}
+            autoCompleteType="username"
+          />
+        ) : null}
+        {this.state.fontLoaded ? (
+          <TextInput
+            style={styles.password_innput}
+            underlineColorAndroid="transparent"
+            placeholder="Password"
+            placeholderTextColor="black"
+            autoCapitalize="none"
+            autoCompleteType="password"
+            secureTextEntry={true}
+          />
+        ) : null}
+
         <TouchableOpacity
           style={styles.button_login}
           onPress={() =>
@@ -76,7 +81,9 @@ export default class ProfileScreen extends React.Component {
               : ""
           }
         >
-          <Text style={styles.text_button}>Login</Text>
+          {this.state.fontLoaded ? (
+            <Text style={styles.text_button}>Login</Text>
+          ) : null}
         </TouchableOpacity>
       </KeyboardAvoidingView>
     )
@@ -99,6 +106,7 @@ const styles = StyleSheet.create({
     borderRadius: 16
   },
   title: {
+    fontFamily: "Muli-Light",
     fontSize: 42,
     color: "#FF806C",
     fontWeight: "600"
@@ -118,6 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   user_input: {
+    fontFamily: "Muli-Light",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FFFFFF",
@@ -130,6 +139,7 @@ const styles = StyleSheet.create({
     borderColor: "gray"
   },
   password_innput: {
+    fontFamily: "Muli-Light",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FFFFFF",

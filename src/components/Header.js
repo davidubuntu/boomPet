@@ -2,9 +2,21 @@ import React from "react"
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import Icon from "react-native-vector-icons/MaterialIcons"
+import * as Font from "expo-font"
 export default class Header extends React.Component {
   constructor(props) {
     super(props)
+    this.state = { fontloaded: false }
+  }
+  async componentDidMount() {
+    await Font.loadAsync({
+      "Muli-Light": require("../../assets/fonts/Muli-Light.ttf"),
+      "Muli-Regular": require("../../assets/fonts/Muli-Regular.ttf"),
+      "Muli-Bold": require("../../assets/fonts/Muli-Bold.ttf"),
+      "Muli-SemiBold": require("../../assets/fonts/Muli-SemiBold.ttf"),
+      "Muli-Black": require("../../assets/fonts/Muli-Black.ttf")
+    })
+    this.setState({ fontLoaded: true })
   }
   render() {
     const navigate = this.props.navigate
@@ -24,15 +36,21 @@ export default class Header extends React.Component {
         <View style={styles.header_container}>
           {backIcon}
           <View style={styles.text_container}>
-            <Text style={styles.header_title}>{this.props.title}</Text>
-            <Text style={styles.header_subtitle}>{this.props.subtitle}</Text>
+            {this.state.fontLoaded ? (
+              <Text style={styles.header_title}>{this.props.title}</Text>
+            ) : null}
+            {this.state.fontLoaded ? (
+              <Text style={styles.header_subtitle}>{this.props.subtitle}</Text>
+            ) : null}
           </View>
           <View style={styles.image_container}>
             <Image
               style={styles.image}
               source={require("../assets/pet-icon.png")}
             />
-            <Text style={styles.user}>{this.props.user}</Text>
+            {this.state.fontLoaded ? (
+              <Text style={styles.user}>{this.props.user}</Text>
+            ) : null}
           </View>
         </View>
       </>
@@ -50,10 +68,12 @@ const styles = StyleSheet.create({
     paddingBottom: 5
   },
   header_subtitle: {
+    fontFamily: "Muli-Bold",
     fontWeight: "600",
     fontSize: 17
   },
   header_title: {
+    fontFamily: "Muli-Light",
     fontWeight: "100",
     fontSize: 17,
     marginBottom: 5
@@ -69,6 +89,7 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   user: {
+    fontFamily: "Muli-Regular",
     fontWeight: "100",
     fontSize: 12,
     marginRight: 20

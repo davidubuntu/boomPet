@@ -11,7 +11,7 @@ import {
   ScrollView,
   SafeAreaView
 } from "react-native"
-import Constants from 'expo-constants';
+import Constants from "expo-constants"
 import { createStackNavigator, createAppContainer } from "react-navigation"
 const CardDetail = props => {
   const {
@@ -26,9 +26,14 @@ const CardDetail = props => {
   } = props
 
   const likesIcon = starFilled ? (
-    <Icon name="star" color="#00CADD" size={25} />
+    <Icon style={styles.like_star} name="star" color="#00CADD" size={25} />
   ) : (
-    <Icon name="star-border" color="#00CADD" size={25} />
+    <Icon
+      style={styles.like_star}
+      name="star-border"
+      color="#00CADD"
+      size={25}
+    />
   )
   const LikesText =
     likesCount > 0 ? (
@@ -59,9 +64,9 @@ const CardDetail = props => {
               <Text style={styles.text_button}>{sex}</Text>
             </TouchableOpacity>
           </View>
-            <ScrollView style={styles.scroll_view_description}>
-              <Text style={styles.description}>{description}</Text>
-            </ScrollView>
+          <ScrollView style={styles.scroll_view_description}>
+            <Text style={styles.description}>{description}</Text>
+          </ScrollView>
         </View>
         {/* acaba details container */}
       </View>
@@ -122,7 +127,7 @@ const styles = StyleSheet.create({
     color: "#878B8B"
   },
   name: {
-    fontWeight: "600",
+    fontWeight: "200",
     lineHeight: 28,
     marginBottom: 5,
     fontSize: 22,
@@ -155,10 +160,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end"
   },
+  like_star: {
+    marginRight: 3
+  },
   scroll_view_description: {
-   marginHorizontal: 5,
-   maxHeight:280,
-   marginTop: 10,
-   marginBottom:25
+    marginHorizontal: 5,
+    maxHeight: 280,
+    marginTop: 10,
+    marginBottom: 25
   }
 })

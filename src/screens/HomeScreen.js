@@ -5,11 +5,12 @@ import Header from "../components/Header"
 import Card from "../components/Card"
 import FadeInView from "../components/FadeInView"
 import { db } from "../services/FirebaseService"
+import * as Font from "expo-font"
 const HomeScreen = props => {
   const { navigation } = props
   const [pets, setPets] = useState([])
   const [loggedUser, setLoggedUser] = useState("")
-
+  const [fontLoaded, setFontLoaded] = useState(false)
   let petsDBRef = db.ref("pets/")
 
   const userIsLogged = () => {
@@ -29,9 +30,24 @@ const HomeScreen = props => {
     })
   }
 
+  const FontLoader = () => {
+    loadFonts()
+      async function loadFonts() {
+        await Font.loadAsync({
+          "Muli-Light": require("../../assets/fonts/Muli-Light.ttf"),
+          "Muli-Regular": require("../../assets/fonts/Muli-Regular.ttf"),
+          "Muli-Bold": require("../../assets/fonts/Muli-Bold.ttf"),
+          "Muli-SemiBold": require("../../assets/fonts/Muli-SemiBold.ttf"),
+          "Muli-Black": require("../../assets/fonts/Muli-Black.ttf")
+        })
+        setFontLoaded(true)
+      }
+  }
+
   useEffect(() => {
     userIsLogged()
     getPetsData()
+    FontLoader()
   }, [])
   //   console.log(Date.now(), pets)
   const renderPets = ({ item }) => {
@@ -52,15 +68,17 @@ const HomeScreen = props => {
     )
   }
   return (
-    <FadeInView duration={1000} style={styles.home_container}>
-      <View style={styles.line} />
-      <FlatList
-        style={styles.list}
-        data={pets}
-        renderItem={renderPets}
-        keyExtractor={item => item.key}
-      />
-    </FadeInView>
+      <FadeInView duration={1000} style={styles.home_container}>
+        <View style={styles.line} />
+        {fontLoaded ? (
+        <FlatList
+          style={styles.list}
+          data={pets}
+          renderItem={renderPets}
+          keyExtractor={item => item.key}
+        />
+        ) : null}
+      </FadeInView>
   )
 }
 HomeScreen.navigationOptions = ({ navigation }) => ({
@@ -83,5 +101,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "black",
     borderBottomWidth: 0.5
   },
-  list: {}
+  list: {
+    fontFamily: "Muli-Bold"
+  }
 })
