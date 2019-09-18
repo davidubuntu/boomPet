@@ -11,7 +11,7 @@ import {
   ScrollView,
   SafeAreaView
 } from "react-native"
-
+import Constants from 'expo-constants';
 import { createStackNavigator, createAppContainer } from "react-navigation"
 const CardDetail = props => {
   const {
@@ -59,11 +59,9 @@ const CardDetail = props => {
               <Text style={styles.text_button}>{sex}</Text>
             </TouchableOpacity>
           </View>
-          <SafeAreaView style={styles.safe_area}>
             <ScrollView style={styles.scroll_view_description}>
               <Text style={styles.description}>{description}</Text>
             </ScrollView>
-          </SafeAreaView>
         </View>
         {/* acaba details container */}
       </View>
@@ -80,7 +78,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 20,
     marginRight: 20,
-    marginTop: 25,
     borderWidth: 0,
     borderRadius: 16,
     shadowColor: "#000",
@@ -118,7 +115,6 @@ const styles = StyleSheet.create({
     paddingTop: 25
   },
   description: {
-    marginTop: 20,
     fontWeight: "100",
     fontSize: 14,
     lineHeight: 16,
@@ -159,8 +155,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end"
   },
-  scroll_view_description: {},
-  safe_area: {
-    flex: 1
+  scroll_view_description: {
+   marginHorizontal: 5,
+   maxHeight:280,
+   marginTop: 10
   }
 })

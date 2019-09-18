@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   },
   icon_back_container: {
     flexDirection: "row",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    marginLeft:-15
   }
 })
